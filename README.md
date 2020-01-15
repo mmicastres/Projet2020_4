@@ -10,3 +10,4 @@ Fonctionnalités proposées :
   - Un compteur du nombre d'invités
   - Une ToDoList avec les instructions indiquées par les organisateurs (ainsi que les personnes qui s'en chargent)
   - Une liste de courses : s'il y a besoin d'acheter des produits / objets
+  - Création d'un programme de l'évènement : heure et intitulé
