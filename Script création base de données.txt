@@ -1,0 +1,330 @@
+DROP TABLE IF EXISTS BUDGET;
+
+DROP TABLE IF EXISTS TABLES;
+
+DROP TABLE IF EXISTS INVITÉ;
+
+DROP TABLE IF EXISTS PLAN_DE_TABLE;
+
+DROP TABLE IF EXISTS MENU;
+
+DROP TABLE IF EXISTS ÉVÈNEMENT;
+
+DROP TABLE IF EXISTS MEDIA;
+
+DROP TABLE IF EXISTS COURSE;
+
+DROP TABLE IF EXISTS DOCUMENT;
+
+DROP TABLE IF EXISTS ORGANISATEUR;
+
+DROP TABLE IF EXISTS PROGRAMME;
+
+DROP TABLE IF EXISTS PRESTATAIRE;
+
+DROP TABLE IF EXISTS TÂCHE;
+
+DROP TABLE IF EXISTS EST_RATTACHÉ_À;
+
+# -----------------------------------------------------------------------------
+#       TABLE : BUDGET
+# -----------------------------------------------------------------------------
+
+CREATE TABLE IF NOT EXISTS BUDGET
+ (
+   ID_ÉVÈNEMENT INTEGER NOT NULL  ,
+   MONTANT INTEGER NULL  ,
+   ID_BUDGET CHAR(32) NOT NULL  
+   , PRIMARY KEY (ID_BUDGET) 
+ ) 
+ comment = "";
+
+# -----------------------------------------------------------------------------
+#       TABLE : TABLES
+# -----------------------------------------------------------------------------
+
+CREATE TABLE IF NOT EXISTS TABLES
+ (
+   ID_PLAN_DE_TABLE CHAR(32) NOT NULL  ,
+   CAPACITE_TABLE INTEGER NULL  ,
+   NUMERO_TABLE INTEGER NULL  ,
+   ID_TABLE CHAR(32) NOT NULL  
+   , PRIMARY KEY (ID_TABLE) 
+ ) 
+ comment = "";
+
+# -----------------------------------------------------------------------------
+#       TABLE : INVITÉ
+# -----------------------------------------------------------------------------
+
+CREATE TABLE IF NOT EXISTS INVITÉ
+ (
+   ID_TABLE CHAR(32) NOT NULL  ,
+   NOM CHAR(32) NULL  ,
+   PRÉNOM CHAR(32) NULL  ,
+   ADRESSE_MAIL CHAR(128) NULL  ,
+   PAIEMENT BOOL NULL  ,
+   NUMÉRO_DE_TÉLÉPHONE BIGINT(4) NULL  ,
+   NUMÉRO_DE_TABLE BIGINT(4) NULL  ,
+   MÉTHODE_DE_PAIEMENT CHAR(32) NULL  ,
+   ID_INVITE CHAR(32) NOT NULL  
+   , PRIMARY KEY (ID_INVITE) 
+ ) 
+ comment = "";
+
+# -----------------------------------------------------------------------------
+#       TABLE : PLAN_DE_TABLE
+# -----------------------------------------------------------------------------
+
+CREATE TABLE IF NOT EXISTS PLAN_DE_TABLE
+ (
+   ID_PLAN_DE_TABLE CHAR(32) NOT NULL  
+   , PRIMARY KEY (ID_PLAN_DE_TABLE) 
+ ) 
+ comment = "";
+
+# -----------------------------------------------------------------------------
+#       TABLE : MENU
+# -----------------------------------------------------------------------------
+
+CREATE TABLE IF NOT EXISTS MENU
+ (
+   ID_ÉVÈNEMENT INTEGER NOT NULL  ,
+   ENTREE CHAR(32) NULL  ,
+   PLAT CHAR(32) NULL  ,
+   DESSERT CHAR(32) NULL  ,
+   DATE_MENU DATE NULL  ,
+   HEURE TIME NULL  ,
+   ID_MENU CHAR(32) NOT NULL  
+   , PRIMARY KEY (ID_MENU) 
+ ) 
+ comment = "";
+
+# -----------------------------------------------------------------------------
+#       TABLE : ÉVÈNEMENT
+# -----------------------------------------------------------------------------
+
+CREATE TABLE IF NOT EXISTS ÉVÈNEMENT
+ (
+   ID_ORGANISATEUR CHAR(32) NOT NULL  ,
+   DATE_EVENEMENT DATETIME NULL  ,
+   LIEU CHAR(32) NULL  ,
+   TYPE CHAR(32) NULL  ,
+   THÈME CHAR(32) NULL  ,
+   ID_ÉVÈNEMENT INTEGER NOT NULL AUTO_INCREMENT 
+   , PRIMARY KEY (ID_ÉVÈNEMENT) 
+ ) 
+ comment = "";
+
+# -----------------------------------------------------------------------------
+#       TABLE : MEDIA
+# -----------------------------------------------------------------------------
+
+CREATE TABLE IF NOT EXISTS MEDIA
+ (
+   ID_ÉVÈNEMENT INTEGER NOT NULL  ,
+   ID_INVITE CHAR(32) NOT NULL  ,
+   LIEN CHAR(32) NULL  ,
+   ID_MEDIA CHAR(32) NOT NULL  
+   , PRIMARY KEY (ID_MEDIA) 
+ ) 
+ comment = "";
+
+# -----------------------------------------------------------------------------
+#       TABLE : COURSE
+# -----------------------------------------------------------------------------
+
+CREATE TABLE IF NOT EXISTS COURSE
+ (
+   ID_ÉVÈNEMENT INTEGER NOT NULL  ,
+   NOM CHAR(32) NULL  ,
+   QUANTITE INTEGER NULL  ,
+   DATE_BUTOIR DATE NULL  ,
+   ID_COURSE CHAR(32) NOT NULL  
+   , PRIMARY KEY (ID_COURSE) 
+ ) 
+ comment = "";
+
+# -----------------------------------------------------------------------------
+#       TABLE : DOCUMENT
+# -----------------------------------------------------------------------------
+
+CREATE TABLE IF NOT EXISTS DOCUMENT
+ (
+   NOM CHAR(32) NULL  ,
+   DATE_BUTOIRE DATETIME NULL  ,
+   REMPLI BOOL NULL  ,
+   ENVOYÉ BOOL NULL  ,
+   ID_DOCUMENT INTEGER NOT NULL AUTO_INCREMENT 
+   , PRIMARY KEY (ID_DOCUMENT) 
+ ) 
+ comment = "";
+
+# -----------------------------------------------------------------------------
+#       TABLE : ORGANISATEUR
+# -----------------------------------------------------------------------------
+
+CREATE TABLE IF NOT EXISTS ORGANISATEUR
+ (
+   NOM CHAR(32) NULL  ,
+   PRENOM CHAR(32) NULL  ,
+   ADRESSE_MAIL CHAR(32) NULL  ,
+   NUMERO_DE_TELEPHONE CHAR(32) NULL  ,
+   ID_ORGANISATEUR CHAR(32) NOT NULL  
+   , PRIMARY KEY (ID_ORGANISATEUR) 
+ ) 
+ comment = "";
+
+# -----------------------------------------------------------------------------
+#       TABLE : PROGRAMME
+# -----------------------------------------------------------------------------
+
+CREATE TABLE IF NOT EXISTS PROGRAMME
+ (
+   ID_ÉVÈNEMENT INTEGER NOT NULL  ,
+   ACTIVITÉ CHAR(32) NULL  ,
+   HORAIRE TIME NULL  ,
+   ID_PROGRAMME INTEGER NOT NULL AUTO_INCREMENT 
+   , PRIMARY KEY (ID_PROGRAMME) 
+ ) 
+ comment = "";
+
+# -----------------------------------------------------------------------------
+#       TABLE : PRESTATAIRE
+# -----------------------------------------------------------------------------
+
+CREATE TABLE IF NOT EXISTS PRESTATAIRE
+ (
+   ID_ÉVÈNEMENT INTEGER NOT NULL  ,
+   NOM CHAR(32) NULL  ,
+   NUMÉRO_DE_TÉLÉPHONE BIGINT(18) NULL  ,
+   EMAIL CHAR(128) NULL  ,
+   PROFESSION CHAR(32) NULL  ,
+   ID_PRESTATAIRE INTEGER NOT NULL AUTO_INCREMENT 
+   , PRIMARY KEY (ID_PRESTATAIRE) 
+ ) 
+ comment = "";
+
+# -----------------------------------------------------------------------------
+#       TABLE : TÂCHE
+# -----------------------------------------------------------------------------
+
+CREATE TABLE IF NOT EXISTS TÂCHE
+ (
+   ID_ÉVÈNEMENT INTEGER NOT NULL  ,
+   NOM CHAR(32) NULL  ,
+   DESCRIPTION CHAR(32) NULL  ,
+   DATE_BUTOIRE DATETIME NULL  ,
+   ID_TACHE INTEGER NOT NULL AUTO_INCREMENT 
+   , PRIMARY KEY (ID_TACHE) 
+ ) 
+ comment = "";
+
+# -----------------------------------------------------------------------------
+#       TABLE : EST_RATTACHÉ_À
+# -----------------------------------------------------------------------------
+
+CREATE TABLE IF NOT EXISTS EST_RATTACHÉ_À
+ (
+   ID_TACHE INTEGER NOT NULL  ,
+   ID_DOCUMENT INTEGER NOT NULL  
+   , PRIMARY KEY (ID_TACHE,ID_DOCUMENT) 
+ ) 
+ comment = "";
+
+
+# -----------------------------------------------------------------------------
+#       CREATION DES REFERENCES DE TABLE
+# -----------------------------------------------------------------------------
+
+
+ALTER TABLE BUDGET 
+  ADD FOREIGN KEY FK_BUDGET_ÉVÈNEMENT (ID_ÉVÈNEMENT)
+      REFERENCES ÉVÈNEMENT (ID_ÉVÈNEMENT) 
+      ON UPDATE CASCADE
+      ON DELETE CASCADE;
+
+
+ALTER TABLE TABLES 
+  ADD FOREIGN KEY FK_TABLES_PLAN_DE_TABLE (ID_PLAN_DE_TABLE)
+      REFERENCES PLAN_DE_TABLE (ID_PLAN_DE_TABLE) 
+      ON UPDATE CASCADE
+      ON DELETE RESTRICT;
+
+
+ALTER TABLE INVITÉ 
+  ADD FOREIGN KEY FK_INVITÉ_TABLES (ID_TABLE)
+      REFERENCES TABLES (ID_TABLE) 
+      ON UPDATE CASCADE
+      ON DELETE RESTRICT;
+
+
+ALTER TABLE MENU 
+  ADD FOREIGN KEY FK_MENU_ÉVÈNEMENT (ID_ÉVÈNEMENT)
+      REFERENCES ÉVÈNEMENT (ID_ÉVÈNEMENT) 
+      ON UPDATE CASCADE
+      ON DELETE CASCADE;
+
+
+ALTER TABLE ÉVÈNEMENT 
+  ADD FOREIGN KEY FK_ÉVÈNEMENT_ORGANISATEUR (ID_ORGANISATEUR)
+      REFERENCES ORGANISATEUR (ID_ORGANISATEUR) 
+      ON UPDATE CASCADE
+      ON DELETE RESTRICT;
+
+
+ALTER TABLE MEDIA 
+  ADD FOREIGN KEY FK_MEDIA_ÉVÈNEMENT (ID_ÉVÈNEMENT)
+      REFERENCES ÉVÈNEMENT (ID_ÉVÈNEMENT) 
+      ON UPDATE CASCADE
+      ON DELETE RESTRICT;
+
+
+ALTER TABLE MEDIA 
+  ADD FOREIGN KEY FK_MEDIA_INVITÉ (ID_INVITE)
+      REFERENCES INVITÉ (ID_INVITE) 
+      ON UPDATE CASCADE
+      ON DELETE RESTRICT;
+
+
+ALTER TABLE COURSE 
+  ADD FOREIGN KEY FK_COURSE_ÉVÈNEMENT (ID_ÉVÈNEMENT)
+      REFERENCES ÉVÈNEMENT (ID_ÉVÈNEMENT) 
+      ON UPDATE CASCADE
+      ON DELETE RESTRICT;
+
+
+ALTER TABLE PROGRAMME 
+  ADD FOREIGN KEY FK_PROGRAMME_ÉVÈNEMENT (ID_ÉVÈNEMENT)
+      REFERENCES ÉVÈNEMENT (ID_ÉVÈNEMENT) 
+      ON UPDATE CASCADE
+      ON DELETE CASCADE;
+
+
+ALTER TABLE PRESTATAIRE 
+  ADD FOREIGN KEY FK_PRESTATAIRE_ÉVÈNEMENT (ID_ÉVÈNEMENT)
+      REFERENCES ÉVÈNEMENT (ID_ÉVÈNEMENT) 
+      ON UPDATE CASCADE
+      ON DELETE RESTRICT;
+
+
+ALTER TABLE TÂCHE 
+  ADD FOREIGN KEY FK_TÂCHE_ÉVÈNEMENT (ID_ÉVÈNEMENT)
+      REFERENCES ÉVÈNEMENT (ID_ÉVÈNEMENT) 
+      ON UPDATE CASCADE
+      ON DELETE RESTRICT;
+
+
+ALTER TABLE EST_RATTACHÉ_À 
+  ADD FOREIGN KEY FK_EST_RATTACHÉ_À_TÂCHE (ID_TACHE)
+      REFERENCES TÂCHE (ID_TACHE) 
+      ON UPDATE CASCADE
+      ON DELETE CASCADE;
+
+
+ALTER TABLE EST_RATTACHÉ_À 
+  ADD FOREIGN KEY FK_EST_RATTACHÉ_À_DOCUMENT (ID_DOCUMENT)
+      REFERENCES DOCUMENT (ID_DOCUMENT) 
+      ON UPDATE CASCADE
+      ON DELETE CASCADE;
+
