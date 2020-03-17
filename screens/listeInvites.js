@@ -46,7 +46,7 @@ class Liste extends React.Component {
         console.log(this.state.invite)
         return (
             <View>
-                <Button title='Liste des invités' onPress={this.Affiche} />
+                <Button title='Liste des invités' onPress={this.affiche} />
                 <FlatList
                     data={this.state.invite}
                     renderItem={this.renderItem}
