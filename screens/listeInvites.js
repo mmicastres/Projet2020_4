@@ -6,6 +6,11 @@ class Liste extends React.Component {
         invite: []
     }
 
+    componentDidMount()
+    {
+        this.affiche();
+    }
+
     /**
      * Récupère chaque objet du tableau stocké dans le state et l'affiche sur la page
      */
@@ -46,7 +51,7 @@ class Liste extends React.Component {
         console.log(this.state.invite)
         return (
             <View>
-                <Button title='Liste des invités' onPress={this.affiche} />
+                <Button title='Ajouter un invité' onPress={this.props.navigation.navigate("Ajouter un invité")} />
                 <FlatList
                     data={this.state.invite}
                     renderItem={this.renderItem}
