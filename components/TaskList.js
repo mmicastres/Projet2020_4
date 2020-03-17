@@ -1,6 +1,6 @@
 import React from 'react';
-import { FlatList, Text, View , ScrollView } from 'react-native';
-import { styles } from './TaskListStyles'
+import { FlatList, Text, View } from 'react-native';
+import { styles } from '../styles/TaskListStyles'
 
 export default class TaskList extends React.Component {
 
@@ -42,7 +42,7 @@ export default class TaskList extends React.Component {
 
     render() {
         return(
-            <ScrollView style={styles.scrollList}>
+            <View style={styles.scrollList}>
                 <FlatList
                     data={this.state.tasks}
                     keyExtractor={ (item) => { item.id }}
@@ -57,7 +57,7 @@ export default class TaskList extends React.Component {
                     }}
                 >
                 </FlatList>
-            </ScrollView>
+            </View>
         )
     }
 }

@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Button, ScrollView } from 'react-native';
+import { View, Button } from 'react-native';
 import TaskList from '../components/TaskList';
 
 export default class listeTaches extends React.Component {
