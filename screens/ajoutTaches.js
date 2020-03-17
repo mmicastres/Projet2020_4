@@ -10,14 +10,26 @@ export default class listeTaches extends React.Component
         androidTimeStart: `${new Date().getUTCHours()}:${new Date().getUTCMinutes()}`,
     }
 
+    /**
+     * Renvoie le contenu du champ "taskName" dans un paramètre du state
+     * @param value L'évènement dans lequel est stocké la saisie des caractères dans le champ de texte
+     */
     changeValueTaskName = (value) => {
         this.setState({ taskName : value });
     }
 
+    /**
+     * Renvoie le contenu du champ "taskDescr" dans un paramètre du state
+     * @param text L'évènement dans lequel est stocké la saisie des caractères dans le champ de texte
+     */
     changeValueTaskDescr = (text) => {
         this.setState({ taskDescr : text })
     }
 
+    /**
+     * Action exécutée lors de l'appui sur le bouton Valider.
+     * Récupère les données saisies dans le formulaire et les envoie dans la base de données.
+     */
     handlerSubmit = () => {
         if(!this.state.taskName)
         {
@@ -33,8 +45,8 @@ export default class listeTaches extends React.Component
             };
                 
             let fetchOptions = {
-            method: 'POST',
-            body: JSON.stringify(tache)
+                method: 'POST',
+                body: JSON.stringify(tache)
             };
             
             const url = 'http://webmmi.iut-tlse3.fr/~vtl3128a/API/ajouter_tache.php';
@@ -50,6 +62,9 @@ export default class listeTaches extends React.Component
         }
     }
 
+    /**
+     * Ouvre l'interface de sélection de date
+     */
     setDateAndroid = async () => {
         try
         {
@@ -69,6 +84,9 @@ export default class listeTaches extends React.Component
 		}
     };
 
+    /**
+     * Ouvre l'interface de sélection de l'heure
+     */
     setTimeAndroid = async () => {
         try {
             const { action, hour, minute } = await TimePickerAndroid.open({

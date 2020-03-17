@@ -16,22 +16,25 @@ export default class CreateEventForm extends React.Component {
 		};
     }
     
+    /**
+     * Renvoie le contenu du champ "eventName" dans un paramètre du state
+     * @param e L'évènement dans lequel est stocké la saisie des caractères dans le champ de texte
+     */
 	changeEventName = (e) => {
         this.setState({ eventName: e });
     };
     
+    /**
+     * Renvoie le contenu du champ "eventLocation" dans un paramètre du state
+     * @param e L'évènement dans lequel est stocké la saisie des caractères dans le champ de texte
+     */
 	changeEventLocation = (e) => {
 		this.setState({ location: e });
     };
-
-	changeEventTheme = (e) => {
-		this.setState({ theme: e });
-    };
     
-	changeEventDescription = (e) => {
-		this.setState({ description: e });
-    };
-    
+    /**
+     * Ouvre l'interface de sélection de date pour le bouton de sélection de la date du début
+     */
 	setStartDateAndroid = async () => {
         try
         {
@@ -51,6 +54,9 @@ export default class CreateEventForm extends React.Component {
 		}
     };
 
+    /**
+     * Ouvre l'interface de sélection de date pour le bouton de sélection de la date de fin
+     */
     setEndDateAndroid = async () => {
         try
         {
@@ -70,6 +76,9 @@ export default class CreateEventForm extends React.Component {
 		}
     };
 
+    /**
+     * Ouvre l'interface de sélection de l'heure pour le bouton de sélection de l'heure du début
+     */
     setStartTimeAndroid = async () => {
         try {
             const { action, hour, minute } = await TimePickerAndroid.open({
@@ -89,6 +98,9 @@ export default class CreateEventForm extends React.Component {
         }
     }
 
+    /**
+     * Ouvre l'interface de sélection de l'heure pour le bouton de sélection de l'heure du fin
+     */
     setEndTimeAndroid = async () => {
         try {
             const { action, hour, minute } = await TimePickerAndroid.open({
@@ -108,6 +120,9 @@ export default class CreateEventForm extends React.Component {
         }
     }
     
+    /**
+     * Récupère les données stockées dans le state pour les renvoyer à la base de données sous forme d'objet
+     */
 	handlerSubmit = () => {
         console.log(this.state);
         if(this.state.eventName == "" || this.state.type == "")
@@ -121,7 +136,7 @@ export default class CreateEventForm extends React.Component {
                 debut: `${this.state.androidDateStart} ${this.state.androidTimeStart}`,
                 fin: `${this.state.androidDateEnd} ${this.state.androidTimeEnd}`,
                 lieu: this.state.location,
-                type: this.state.type
+                type: this.state.type,
                 };
             
             let fetchOptions = {
@@ -140,7 +155,7 @@ export default class CreateEventForm extends React.Component {
             
             alert("Evènement créé!");
         }
-        this.props.navigation.navigate("Homepage");
+        //this.props.navigation.navigate("Homepage");
     };
     
 	render() {

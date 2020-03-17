@@ -8,14 +8,25 @@ export default class Connexion extends React.Component
         password: "",
     }
 
+    /**
+     * Renvoie le contenu du champ "Nom d'utilisateur" dans un paramètre du state
+     * @param e L'évènement dans lequel est stocké la saisie des caractères dans le champ de texte
+     */
     handlerChangeUser = (e) => {
         this.setState({ username : e })
     }
 
+    /**
+     * Renvoie le contenu du champ "Mot de passe" dans un paramètre du state
+     * @param e L'évènement dans lequel est stocké la saisie des caractères dans le champ de texte
+     */
     handlerChangePass = (e) => {
         this.setState({ password : e })
     }
 
+    /**
+     * Vérifie les informations saisies avant de rediriger vers une autre page
+     */
     handlerSubmit = () => {
         console.log(this.state);
     }

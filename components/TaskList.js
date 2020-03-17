@@ -8,6 +8,9 @@ export default class TaskList extends React.Component {
         tasks : [],
     }
 
+    /**
+     * Renvoie une liste d'objets à partir d'une base de données et le stocke dans le state sous forme de tableau
+     */
     getListe = () => {
         let fetchOptions = { method: "GET" };
 
@@ -29,6 +32,9 @@ export default class TaskList extends React.Component {
         })
     }
     
+    /**
+     * Permet la récupération des données et leur affichage au moment du chargement de la page
+     */
     componentDidMount()
     {
         this.getListe();

@@ -7,10 +7,18 @@ export default class budgetEvent extends React.Component
         budget : 0,
     }
 
+    /**
+     * Renvoie le contenu du champ "eventBudget" dans un paramètre du state
+     * @param value L'évènement dans lequel est stocké la saisie des caractères dans le champ de texte
+     */
     changeValue = (value) => {
         this.setState({ budget : value })
     }
 
+    /**
+     * Vérifie que les données entrées dans le formulaire respectent le format numérique.
+     * Envoie ensuite les données dans la base de données
+     */
     handlerSubmit = () => {
         const regEx = /^\d*$/;
         if(regEx.test(this.state.budget))
