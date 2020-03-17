@@ -7,7 +7,7 @@ class Liste extends React.Component {
     }
 
     /**
-     * Récupère chaque objet du tableau et l'affiche sur la page
+     * Récupère chaque objet du tableau stocké dans le state et l'affiche sur la page
      */
     renderItem = ({ item }) => (
         <View>
@@ -51,7 +51,7 @@ class Liste extends React.Component {
                     data={this.state.invite}
                     renderItem={this.renderItem}
                     keyExtractor={index => index.id}></FlatList>
-            </View >
+            </View>
         )
     }
 }
