@@ -1,15 +1,16 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 
 import Accueil from './screens/Accueil';
 import CreateEventForm from './screens/CreateEventForm';
 import budgetEvent from './screens/budgetEvent';
-import listeInvites from './screens/listeInvites';
+import ListeInvites from './screens/ListeInvites';
+import ListeContact from './screens/ListeContact';
 import listeTaches from './screens/listeTaches';
 import ajoutTaches from './screens/ajoutTaches';
 import AjoutInvite from './screens/AjoutInvite';
+import Inscription from './screens/Inscription';
 
 const Stack = createStackNavigator();
 
@@ -17,6 +18,14 @@ export default function App() {
   return (
       <NavigationContainer>
         <Stack.Navigator>
+        <Stack.Screen
+            name="Inscription"
+            options={{title: 'Inscription',
+            headerTitleAlign: 'center',
+            headerStyle: {backgroundColor: '#f4511e'},
+            headerTintColor: '#fff' }}
+            component={Inscription}
+        />
           <Stack.Screen
             name="Krevent"
             options={{title: 'Krevent',
@@ -44,7 +53,7 @@ export default function App() {
             options={{title: 'Liste des invités',
             headerStyle: {backgroundColor: '#f4511e'},
             headerTintColor: '#fff' }}
-            component={listeInvites}
+            component={ListeInvites}
           />
           <Stack.Screen
             name="Liste des tâches"
@@ -66,6 +75,13 @@ export default function App() {
             headerStyle: {backgroundColor: '#f4511e'},
             headerTintColor: '#fff' }}
             component={AjoutInvite}
+          />
+          <Stack.Screen
+            name="Ajouter un contact"
+            options={{title: 'Ajouter un contact',
+            headerStyle: {backgroundColor: '#f4511e'},
+            headerTintColor: '#fff' }}
+            component={ListeContact}
           />
         </Stack.Navigator>
       </NavigationContainer>
