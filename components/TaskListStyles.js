@@ -2,7 +2,7 @@ import { StyleSheet } from 'react-native';
 
 export const styles = StyleSheet.create({
     scrollList: {
-        marginBottom: 40,
+        marginBottom: 60,
     },
     listItem: {
         padding: 20,

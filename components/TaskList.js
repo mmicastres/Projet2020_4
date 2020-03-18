@@ -1,6 +1,6 @@
 import React from 'react';
 import { FlatList, Text, View } from 'react-native';
-import { styles } from '../styles/TaskListStyles'
+import { styles } from './TaskListStyles'
 
 export default class TaskList extends React.Component {
 
