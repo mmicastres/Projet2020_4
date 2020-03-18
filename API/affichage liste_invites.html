@@ -1,0 +1,22 @@
+<html>
+<body>
+
+Test requête Ajax
+
+</body>
+</html>
+
+
+<script>
+let fetchOptions = {method: "GET"};
+
+const url = "http://webmmi.iut-tlse3.fr/~vtl3128a/API/liste_invites.php";
+
+fetch(url, fetchOptions)
+.then( (response) => { return response.json() } )
+.then( (dataJSON) => {
+
+    console.log(dataJSON);
+
+})
+</script>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Essai de l'APIIII pour ajouter un nouvel évènement en base de donnééééééées</title>
+</head>
+<body>
+    
+</body>
+</html>
+
+<script>
+
+let evenement = {
+    'nom' : "Pourri",
+    'debut' : "2020-05-30 12:05:00",
+    'fin' : "2020-05-30 19:30:00",
+    'lieu' : "Castres",
+    'type' : "Fête de voisins"
+};
+
+let fetchOptions = {
+    method: 'POST',
+    body: JSON.stringify(evenement)
+};
+
+const url = 'http://webmmi.iut-tlse3.fr/~vtl3128a/API/creer_evenement.php';
+
+fetch(url, fetchOptions)
+.then((response) => {
+    console.log(fetchOptions);
+    return response.json();
+})
+.then((dataJSON) => {
+    console.log(dataJSON);
+});
+
+</script>

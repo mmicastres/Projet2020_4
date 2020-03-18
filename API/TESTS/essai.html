@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Essai de l'APIIII pour ajouter un nouvel invité en base de donnééééééées</title>
+</head>
+<body>
+    
+</body>
+</html>
+
+<script>
+
+let invite = {
+    'nom': 'Garrido',
+    'prenom': 'Théo',
+    'mail': 'theo.garrido@etu.iut-tlse3.fr',
+    'numero de telephone': '0561912431'
+};
+
+let fetchOptions = {
+    method: 'POST',
+    body: JSON.stringify(invite)
+};
+
+const url = 'http://webmmi.iut-tlse3.fr/~vtl3128a/API/envoi_invites.php';
+
+fetch(url, fetchOptions)
+.then((response) => {
+    console.log(fetchOptions);
+    return response.json();
+})
+.then((dataJSON) => {
+    console.log(dataJSON);
+});
+
+</script>

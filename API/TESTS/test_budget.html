@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Essai de l'APIIII pour définir un nouveau budget en base de donnééééééées</title>
+</head>
+<body>
+    
+</body>
+</html>
+
+<script>
+
+let budget = {
+    'montant' : 500,
+};
+
+let fetchOptions = {
+    method: 'POST',
+    body: JSON.stringify(budget)
+};
+
+const url = 'http://webmmi.iut-tlse3.fr/~vtl3128a/API/definir_budget.php';
+
+fetch(url, fetchOptions)
+.then((response) => {
+    console.log(fetchOptions);
+    return response.json();
+})
+.then((dataJSON) => {
+    console.log(dataJSON);
+});
+
+</script>
