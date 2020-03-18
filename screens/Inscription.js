@@ -68,7 +68,7 @@ export default class Inscription extends React.Component {
             body: JSON.stringify(invite)
         };
 
-        const url = 'http://webmmi.iut-tlse3.fr/~vtl3128a/API/connexion.php';
+        const url = 'http://webmmi.iut-tlse3.fr/~vtl3128a/API/inscription.php';
 
         fetch(url, fetchOptions)
             .then((response) => {
@@ -76,7 +76,9 @@ export default class Inscription extends React.Component {
             })
             .then((dataJSON) => {
                 console.log('lol' + dataJSON);
-            });
+        });
+
+        this.props.navigation.navigate('Krevent', {'user': this.state.invite.prenom});
     };
     /* ---------------------------- Formulaire d'inscription ---------------------------- */
 
@@ -88,7 +90,7 @@ export default class Inscription extends React.Component {
                 <TextInput onChange={this.handlerTel} style={styles.item} placeholder={'Entrez votre Numéro de téléphone'} ></TextInput>
                 <TextInput onChange={this.handlerMail} style={styles.item} placeholder={'Entrez votre Adresse mail'} ></TextInput>
                 <TextInput onChange={this.handlerMdp} style={styles.item} placeholder={'Entrez votre Mot de passe'} ></TextInput>
-                <Button onPress={this.handlerEnvoie} title='valide'></Button>
+                <Button onPress={this.handlerEnvoie} title='valider'></Button>
             </View >
         )
     }
@@ -98,7 +100,6 @@ const styles = StyleSheet.create({
     item: {
         backgroundColor: 'white',
         padding: 10,
-        width: 200,
         borderWidth: 1,
         borderColor: 'black',
         marginVertical: 8,

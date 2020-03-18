@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Button } from 'react-native';
+import { View, Button, ScrollView } from 'react-native';
 import TaskList from '../components/TaskList';
 
 export default class listeTaches extends React.Component {
@@ -10,7 +10,7 @@ export default class listeTaches extends React.Component {
             <View>
                 <Button
                     title="Ajouter une tâche"
-                    onPress={ () => { this.props.navigation.navigate("budgetEvent"); }}
+                    onPress={ () => { this.props.navigation.navigate("Ajouter une tâche"); }}
                 />
                 <TaskList></TaskList>
             </View>

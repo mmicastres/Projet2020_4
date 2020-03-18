@@ -74,6 +74,9 @@ class Form extends React.Component {
             .then((dataJSON) => {
                 console.log(dataJSON);
             });
+
+        alert('Invité ajouté');
+        this.props.navigation.navigate('Liste des invités');
     };
     /* ---------------------------- Formulaire d'ajout d'un invité ---------------------------- */
 
@@ -84,7 +87,6 @@ class Form extends React.Component {
                 <TextInput
                     onChange={this.handleChangePrenom}
                     style={styles.item}
-                    on
                     placeholder="Prénom de l'invité"
                 ></TextInput>
                 <TextInput
@@ -100,7 +102,6 @@ class Form extends React.Component {
                 <TextInput
                     onChange={this.handleChangeAdresse}
                     style={styles.item}
-                    on
                     placeholder="Adresse mail de l'invité"
                 ></TextInput>
                 <Button onPress={this.handlerEnvoie} title='valide'></Button>

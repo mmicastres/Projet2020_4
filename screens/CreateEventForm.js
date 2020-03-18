@@ -1,6 +1,6 @@
 import React from 'react';
 import { Text, View, TextInput, Button, DatePickerAndroid, TimePickerAndroid, ScrollView, TouchableOpacity, Picker } from 'react-native';
-import { styles } from '../styles/CreateEventFormStyles';
+import { styles } from './CreateEventFormStyles';
 
 export default class CreateEventForm extends React.Component {
 	constructor(props) {
