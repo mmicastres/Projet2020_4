@@ -1,7 +1,7 @@
 # Projet2020_4
 
 Nous proposons une application de planning évènementiel, pour faciliter l'organisation d'évènements spéciaux (anniversaires, soirées, ...)
-Nom : *à choisir*
+Nom : Krevent
 
 Notre application vous permettra de jongler habilement entre un agenda de planification, la gestion des invités et participants,  un tableau d'attribution de tâches et la gestion des documents administratifs. 
 
